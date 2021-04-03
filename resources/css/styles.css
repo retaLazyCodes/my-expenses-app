@@ -6,10 +6,15 @@ body {
 h1 {
     text-align: center;
     color: #5f939a;
+    margin: 1rem 0 1.68rem 0;
 }
 
 #transactionForm {
     margin-top: 10px;
+}
+
+#transactionForm label {
+    font-size: 1rem;
 }
 
 .formClass {
@@ -22,7 +27,7 @@ h1 {
 
 #addButton {
     font-size: 23px;
-    margin-top: 10px;
+    margin-top: 20px;
     transition: all 500ms ease; 
 }
 
@@ -39,7 +44,6 @@ h1 {
 td, 
 th {
     text-align: center;
-    padding: 10px;
     border: solid black 1px;
 }
 
