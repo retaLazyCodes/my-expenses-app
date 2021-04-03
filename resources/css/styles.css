@@ -1,0 +1,52 @@
+body {
+    background-color: aliceblue;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #5f939a;
+}
+
+#transactionForm {
+    margin-top: 10px;
+}
+
+.formClass {
+    text-align: center;
+}
+
+.formClass span {
+    font-weight: bold;
+}
+
+#addButton {
+    font-size: 23px;
+    margin-top: 10px;
+    transition: all 500ms ease; 
+}
+
+#addButton:hover {
+    color: #26a69a;
+    border: #26a69a solid 1px;
+    background:#fff;
+    cursor: pointer;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+td, 
+th {
+    text-align: center;
+    padding: 10px;
+    border: solid black 1px;
+}
+
+.tableFormat table {
+    margin: 10px auto;
+}
+
+.tableFormat caption {
+    font-weight: bold;
+}
