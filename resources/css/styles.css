@@ -17,6 +17,14 @@ h1 {
     font-size: 1rem;
 }
 
+#transactionForm label i {
+    position: relative;
+    font-size: 2rem;
+    bottom: -8px;
+    color: #26a69a;
+    
+}
+
 .formClass {
     text-align: center;
 }
