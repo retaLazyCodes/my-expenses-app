@@ -1,19 +1,44 @@
+import viewFunctions from './view.js'
+import modelFunctions from './model.js'
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    drawCategories()
+    viewFunctions.drawCategories()
+    if (modelFunctions.thereIsDataStored()) {
+        const transactionArray = JSON.parse(localStorage.getItem("transactionData"))
+        transactionArray.forEach(element => viewFunctions.insertRowInTransactionTable(element))
+    }
 })
 
-function drawCategories() {
-    let allCategories = [
-        "Comida", "Expensas", "Ocio", "Higiene", "Tecnología", "Trabajo", "Transporte"
-    ]
-    for (let index = 0; index < allCategories.length; index++) {
-        insertCategory(allCategories[index])
+
+const form = document.getElementById('transactionForm')
+
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const transactionFormData = new FormData(form)
+    const transactionObj = convertFormDataToTransactionObj(transactionFormData)
+
+    modelFunctions.saveTransactionObj(transactionObj)
+    viewFunctions.insertRowInTransactionTable(transactionObj)
+    form.reset()
+
+})
+
+
+function convertFormDataToTransactionObj(transactionFormData) {
+    const transactionType = transactionFormData.get('transactionType')
+    const transactionDescription = transactionFormData.get('transactionDescription')
+    const transactionAmount = transactionFormData.get('transactionAmount')
+    const transactionCategory = transactionFormData.get('transactionCategory')
+    const transactionId = modelFunctions.getNewTransactionId()
+    return {
+        "transactionType": transactionType,
+        "transactionDescription": transactionDescription,
+        "transactionAmount": transactionAmount,
+        "transactionCategory": transactionCategory,
+        "transactionId": transactionId
     }
 }
 
-function insertCategory(categoryName) {
-    const selectElement = document.getElementById("transactionCategory")
-    const htmlToInsert = `<option> ${categoryName} </option>`
-    selectElement.insertAdjacentHTML("beforeend", htmlToInsert)
-}
 
