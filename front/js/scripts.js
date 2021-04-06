@@ -4,6 +4,7 @@ import modelFunctions from './model.js'
 
 document.addEventListener('DOMContentLoaded', () => {
     viewFunctions.drawCategories()
+    viewFunctions.drawSpanishDatepicker()
     if (modelFunctions.thereIsDataStored()) {
         const transactionArray = JSON.parse(localStorage.getItem("transactionData"))
         transactionArray.forEach(element => viewFunctions.insertRowInTransactionTable(element))
@@ -31,12 +32,14 @@ function convertFormDataToTransactionObj(transactionFormData) {
     const transactionDescription = transactionFormData.get('transactionDescription')
     const transactionAmount = transactionFormData.get('transactionAmount')
     const transactionCategory = transactionFormData.get('transactionCategory')
+    const transactionDate = transactionFormData.get('transactionDate')
     const transactionId = modelFunctions.getNewTransactionId()
     return {
         "transactionType": transactionType,
         "transactionDescription": transactionDescription,
         "transactionAmount": transactionAmount,
         "transactionCategory": transactionCategory,
+        "transactionDate": transactionDate,
         "transactionId": transactionId
     }
 }

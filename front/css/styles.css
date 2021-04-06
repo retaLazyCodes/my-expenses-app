@@ -1,5 +1,4 @@
 body {
-    background-color: aliceblue;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -25,12 +24,17 @@ h1 {
     
 }
 
+#transactionForm #transactionDate {
+    margin-top: 10px;
+}
+
 .formClass {
     text-align: center;
 }
 
 .formClass span {
     font-weight: bold;
+    display: block;
 }
 
 #addButton {
@@ -49,11 +53,10 @@ h1 {
     transform: scale(1.2);
 }
 
-td, 
-th {
+/* .tableFormat td, .tableFormat th {
     text-align: center;
     border: solid black 1px;
-}
+} */
 
 .tableFormat table {
     margin: 10px auto;

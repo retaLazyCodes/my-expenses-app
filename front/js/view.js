@@ -1,12 +1,14 @@
 import modelFunctions from './model.js'
 export default {
     drawCategories: drawCategories,
+    drawSpanishDatepicker: drawSpanishDatepicker,
     insertRowInTransactionTable: insertRowInTransactionTable
 }
 
 function drawCategories() {
     let allCategories = [
-        "Comida", "Expensas", "Ocio", "Higiene", "Tecnología", "Trabajo", "Transporte", "Vestimenta"
+        "Bebidas", "Comida", "Diversión", "Educación", "Expensas", "Gasolina", "Higiene", "Hotel", "Mascota", "Mercancía",
+        "Otros", "Personales", "Préstamo", "Propinas", "Ropa", "Salud", "Tecnología", "Trabajo", "Transporte",
     ]
     for (let index = 0; index < allCategories.length; index++) {
         insertCategory(allCategories[index])
@@ -56,6 +58,24 @@ function insertRowInTransactionTable(transactionObj) {
     })
 
 }
+
+
+function drawSpanishDatepicker() {
+    const calendar = document.querySelector('.datepicker')
+    M.Datepicker.init(calendar, {
+        format: 'dd/mm/yy',
+        autoClose: true,
+        firstDay: 1,
+        i18n: {
+            months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"],
+            weekdays: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+            weekdaysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+            weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"]
+        }
+    })
+}
+
 
 
 
