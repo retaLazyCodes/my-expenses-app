@@ -1,12 +1,48 @@
 body {
-    background-color: aliceblue;
     font-family: 'Roboto', sans-serif;
+    font-family: 'TT Commons Roman','Gotham SSm A','Gotham SSm B',Arial,sans-serif;;
+    background-color: #0d0f12;
+    color: white;
+}
+
+input, select {
+    background-color: #0d0f12;
+    color: white;
+    border: 1px solid rgba(179, 173, 173, 0.3);
+    border-radius: 2px;
+}
+
+input:active {
+    border-color: #f05945;
+}
+
+option {
+    color: white;
+    background: #24282e;
 }
 
 h1 {
     text-align: center;
-    color: #26a69a;
     margin: 1rem 0 1.68rem 0;
+    margin: 1rem 0 1.68rem 0;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#transactionTable tbody tr td button {
+    background: linear-gradient(to right,#F05A28,#EC008C,#F05A28);;
+    color: white;
+}
+
+#transactionTable, .transactionTableResults {
+    padding: 10px 10px;
+    border: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(179, 173, 173, 0.3);
+  
 }
 
 #transactionForm {
@@ -15,6 +51,17 @@ h1 {
 
 #transactionForm label {
     font-size: 1rem;
+}
+
+#transactionForm label i {
+    position: relative;
+    font-size: 2rem;
+    bottom: -8px;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
 }
 
 .formClass {
@@ -26,25 +73,24 @@ h1 {
 }
 
 #addButton {
+    background: linear-gradient(to right,#F05A28,#EC008C,#F05A28);
     font-size: 23px;
     margin-top: 20px;
     transition: all 500ms ease; 
 }
 
 #addButton:hover {
-    color: #26a69a;
-    border: #26a69a solid 1px;
-    background:#fff;
     cursor: pointer;
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2);
 }
 
-td, 
-th {
-    text-align: center;
-    border: solid black 1px;
+
+
+td button {
+    background: #f05945;
+
 }
 
 .tableFormat table {
@@ -77,4 +123,30 @@ th {
     h1 {
         font-size: 4.2rem;
     }
+}
+
+.datepicker-day-button, .select-dropdown, .dropdown-trigger {
+    color: #0d0f12;
+}
+
+.modal-content .datepicker-container .datepicker-day-display {
+    background-color: #EC008C;
+}
+
+.btn-small {
+    background: linear-gradient(to right,#F05A28,#EC008C,#F05A28);
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+  background-color: rgba(179, 173, 173, 0.3);
+}
+
+[type="radio"]:checked+span:after, 
+[type="radio"].with-gap:checked+span:before, 
+[type="radio"].with-gap:checked+span:after {
+    border: 2px solid #EC008C;
+}
+
+[type="radio"]:checked + span::after, [type="radio"].with-gap:checked + span::after {
+    background-color: #EC008C;
 }

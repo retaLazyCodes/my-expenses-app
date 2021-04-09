@@ -18,7 +18,8 @@
     <div class="row">
         <div class="col l5 offset-l1 col s12">
             <div class="tableFormat">
-                <table id="transactionTable" data-transaction-id="123" data-column-amount="4">
+                <table id="transactionTable" class="striped bordered centered" data-transaction-id="123"
+                    data-column-amount="6">
                     <caption>Historial de transacciones</caption>
                     <thead>
                         <tr>
@@ -26,27 +27,52 @@
                             <th>Descripción</th>
                             <th>Monto</th>
                             <th>Categoría</th>
+                            <th>Fecha</th>
                             <th>Eliminar</th>
                         </tr>
                     </thead>
+
+                    <tbody class="transactionTableBody">
+                        <tr>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="transactionTableResults striped bordered centered">
+                    <thead>
+                        <tr>
+                            <th>Ingreso</th>
+                            <th>Gasto</th>
+                            <th>Saldo actual</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="transactionResults">
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
+
         <div class="col l4 s10">
             <div class="col 8 s10 offset-s2">
                 <form action="#" id="transactionForm">
                     <div class="formClass">
                         <p>
-                            <span>Transacción</span>
+                            <span>Tipo</span>
                             <label>
-                                <i class="material-icons">add</i>
-                                <input class="with-gap" name="transactionType" type="radio" value="Ingreso" checked
-                                    required />
+                                <i class="material-icons">call_received</i>
+                                <input class="with-gap" name="transactionType" type="radio" value="Ingreso" required />
                                 <span>Ingreso</span>
                             </label>
                             <label>
-                                <i class="material-icons">remove</i>
-                                <input class="with-gap" name="transactionType" type="radio" value="Egreso" />
+                                <i class="material-icons">call_made</i>
+                                <input class="with-gap" name="transactionType" type="radio" value="Egreso" checked />
                                 <span>Egreso</span>
                             </label>
                         </p>
@@ -67,6 +93,10 @@
                         </select>
                     </div>
                     <div class="formClass">
+                        <input id="transactionDate" name="transactionDate" class="datepicker" type="text" />
+                        <label for="transactionDate">Elige la fecha</label>
+                    </div>
+                    <div class="formClass">
                         <button class="waves-effect waves-light btn" id="addButton" name="action">
                             Añadir<i class="material-icons right">send</i>
                         </button>
@@ -78,6 +108,8 @@
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="resources/js/scripts.js"></script>
+<script src="resources/js/view.js" type="module"></script>
+<script src="resources/js/model.js" type="module"></script>
+<script src="resources/js/scripts.js" type="module"></script>
 
 </html>

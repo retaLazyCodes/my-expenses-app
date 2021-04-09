@@ -1,11 +1,15 @@
-import { drawCategories, insertRowInTransactionTable } from './view'
-import { getNewTransactionId, saveTransactionObj } from './model'
+import viewFunctions from './view.js'
+import modelFunctions from './model.js'
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    drawCategories()
-    transactionArray = JSON.parse(localStorage.getItem("transactionData"))
-    transactionArray.forEach(element => insertRowInTransactionTable(element))
+    viewFunctions.drawCategories()
+    viewFunctions.drawSpanishDatepicker()
+    if (modelFunctions.thereIsDataStored()) {
+        const transactionArray = JSON.parse(localStorage.getItem("transactionData"))
+        transactionArray.forEach(element => viewFunctions.insertRowInTransactionTable(element))
+    }
+    viewFunctions.drawTotalIncomeAndExpenses()
 })
 
 
@@ -17,8 +21,9 @@ form.addEventListener('submit', (event) => {
     const transactionFormData = new FormData(form)
     const transactionObj = convertFormDataToTransactionObj(transactionFormData)
 
-    saveTransactionObj(transactionObj)
-    insertRowInTransactionTable(transactionObj)
+    modelFunctions.saveTransactionObj(transactionObj)
+    viewFunctions.insertRowInTransactionTable(transactionObj)
+    viewFunctions.drawTotalIncomeAndExpenses()
     form.reset()
 
 })
@@ -29,12 +34,14 @@ function convertFormDataToTransactionObj(transactionFormData) {
     const transactionDescription = transactionFormData.get('transactionDescription')
     const transactionAmount = transactionFormData.get('transactionAmount')
     const transactionCategory = transactionFormData.get('transactionCategory')
-    const transactionId = getNewTransactionId()
+    const transactionDate = transactionFormData.get('transactionDate')
+    const transactionId = modelFunctions.getNewTransactionId()
     return {
         "transactionType": transactionType,
         "transactionDescription": transactionDescription,
         "transactionAmount": transactionAmount,
         "transactionCategory": transactionCategory,
+        "transactionDate": transactionDate,
         "transactionId": transactionId
     }
 }

@@ -1,12 +1,19 @@
-export function getNewTransactionId() {
+export default {
+    getNewTransactionId: getNewTransactionId,
+    saveTransactionObj: saveTransactionObj,
+    deleteTransactionObj: deleteTransactionObj,
+    thereIsDataStored: thereIsDataStored
+}
+
+
+function getNewTransactionId() {
     let lastTransactionId = localStorage.getItem("lastTransactionId") || "-1"
     let newTransactionId = JSON.parse(lastTransactionId) + 1
     localStorage.setItem("lastTransactionId", JSON.stringify(newTransactionId))
     return newTransactionId
 }
 
-
-export function saveTransactionObj(transactionObj) {
+function saveTransactionObj(transactionObj) {
     let transactionArray = []
 
     if (thereIsDataStored()) {
@@ -19,13 +26,13 @@ export function saveTransactionObj(transactionObj) {
 }
 
 
-export function deleteTransactionObj(transactionId) {
-    let tranasactionArray = JSON.parse(localStorage.getItem("transactionData"))
-    let transactionIndexInArray = tranasactionArray.findIndex(
+function deleteTransactionObj(transactionId) {
+    let transactionArray = JSON.parse(localStorage.getItem("transactionData"))
+    let transactionIndexInArray = transactionArray.findIndex(
         element => element.transactionId == transactionId
     )
 
-    tranasactionArray.splice(transactionIndexInArray, 1)
+    transactionArray.splice(transactionIndexInArray, 1)
 
     const transactionArrayJson = JSON.stringify(transactionArray)
     localStorage.setItem("transactionData", transactionArrayJson)
@@ -33,6 +40,12 @@ export function deleteTransactionObj(transactionId) {
 
 
 function thereIsDataStored() {
-    return localStorage.getItem("transactionData") != null
+    try {
+        const storage = JSON.parse(localStorage.getItem("transactionData"))
+        return storage != null
+    } catch (error) {
+        console.error("Not found data in LocalStorage")
+        return false
+    }
 }
 
