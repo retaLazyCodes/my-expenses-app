@@ -1,3 +1,4 @@
 nota_fechas.txt
 api/.idea
 api/venv
+api/__pycache__
