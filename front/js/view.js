@@ -132,6 +132,7 @@ function drawSpanishDatepicker() {
             weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"]
         }
     })
+    document.querySelector('.datepicker-date-display').style.backgroundColor = "DeepPink"
 }
 
 
