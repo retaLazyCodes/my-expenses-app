@@ -32,14 +32,14 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody class="transactionTableBody">
                         <tr>
 
                         </tr>
                     </tbody>
                 </table>
 
-                <table class="striped bordered centered">
+                <table class="transactionTableResults striped bordered centered">
                     <thead>
                         <tr>
                             <th>Ingreso</th>
@@ -48,7 +48,7 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody class="transactionResults">
                         <tr>
                             <td>0</td>
                             <td>0</td>
@@ -58,19 +58,20 @@
                 </table>
             </div>
         </div>
+
         <div class="col l4 s10">
             <div class="col 8 s10 offset-s2">
                 <form action="#" id="transactionForm">
                     <div class="formClass">
                         <p>
-                            <span>Transacción</span>
+                            <span>Tipo</span>
                             <label>
-                                <i class="material-icons">add</i>
-                                <input class="with-gap" name="transactionType" type="radio" value="Ingreso" />
+                                <i class="material-icons">call_received</i>
+                                <input class="with-gap" name="transactionType" type="radio" value="Ingreso" required />
                                 <span>Ingreso</span>
                             </label>
                             <label>
-                                <i class="material-icons">remove</i>
+                                <i class="material-icons">call_made</i>
                                 <input class="with-gap" name="transactionType" type="radio" value="Egreso" checked />
                                 <span>Egreso</span>
                             </label>
@@ -78,15 +79,16 @@
                     </div>
                     <div class="input-field">
                         <label for="transactionDescription">Descripcion: </label>
-                        <input class="validate" type="text" id="transactionDescription" name="transactionDescription">
+                        <input class="validate" type="text" id="transactionDescription" name="transactionDescription"
+                            required>
                     </div>
                     <div class="input-field">
                         <label for="transactionAmount">Monto: </label>
-                        <input class="validate" type="number" id="transactionAmount" name="transactionAmount">
+                        <input class="validate" type="number" id="transactionAmount" name="transactionAmount" required>
                     </div>
                     <div class="formClass">
                         <label for="transactionCategory">Categoria:</label>
-                        <select id="transactionCategory" name="transactionCategory" class="browser-default">
+                        <select id="transactionCategory" name="transactionCategory" class="browser-default" required>
                             <option value="" disabled selected>Seleccione la categoría</option>
                         </select>
                     </div>
@@ -94,7 +96,6 @@
                         <input id="transactionDate" name="transactionDate" class="datepicker" type="text" />
                         <label for="transactionDate">Elige la fecha</label>
                     </div>
-
                     <div class="formClass">
                         <button class="waves-effect waves-light btn" id="addButton" name="action">
                             Añadir<i class="material-icons right">send</i>
@@ -107,7 +108,9 @@
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="./js/scripts.js" type="module"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="js/view.js" type="module"></script>
+<script src="js/model.js" type="module"></script>
+<script src="js/scripts.js" type="module"></script>
 
 </html>

@@ -1,30 +1,42 @@
 import viewFunctions from './view.js'
 import modelFunctions from './model.js'
 
+let transactions = ""
+const endpointBase = "http://127.0.0.1:3050/api/v1/transactions"
 
 document.addEventListener('DOMContentLoaded', () => {
+    getInitial()
     viewFunctions.drawCategories()
     viewFunctions.drawSpanishDatepicker()
-    if (modelFunctions.thereIsDataStored()) {
-        const transactionArray = JSON.parse(localStorage.getItem("transactionData"))
-        transactionArray.forEach(element => viewFunctions.insertRowInTransactionTable(element))
-    }
+    setTimeout(viewFunctions.drawTotalIncomeAndExpenses, 2000)
 })
 
 
-const form = document.getElementById('transactionForm')
+const form = document.getElementById("transactionForm")
 
 
-form.addEventListener('submit', (event) => {
+form.addEventListener("submit", (event) => {
     event.preventDefault()
     const transactionFormData = new FormData(form)
-    const transactionObj = convertFormDataToTransactionObj(transactionFormData)
+    transactionFormData.append("transactionId", modelFunctions.getNewTransactionId());
+    modelFunctions.saveTransactionFormData(transactionFormData)
 
-    modelFunctions.saveTransactionObj(transactionObj)
+    const transactionObj = convertFormDataToTransactionObj(transactionFormData)
     viewFunctions.insertRowInTransactionTable(transactionObj)
+    setTimeout(viewFunctions.drawTotalIncomeAndExpenses, 2000)
     form.reset()
 
 })
+
+
+function getInitial() {
+    fetch(endpointBase + "/initial")
+        .then(response => response.json())
+        .then(json => {
+            transactions = json
+            viewFunctions.renderNewSelection(transactions)
+        })
+}
 
 
 function convertFormDataToTransactionObj(transactionFormData) {
@@ -33,7 +45,7 @@ function convertFormDataToTransactionObj(transactionFormData) {
     const transactionAmount = transactionFormData.get('transactionAmount')
     const transactionCategory = transactionFormData.get('transactionCategory')
     const transactionDate = transactionFormData.get('transactionDate')
-    const transactionId = modelFunctions.getNewTransactionId()
+    const transactionId = transactionFormData.get('transactionId')
     return {
         "transactionType": transactionType,
         "transactionDescription": transactionDescription,
@@ -43,5 +55,4 @@ function convertFormDataToTransactionObj(transactionFormData) {
         "transactionId": transactionId
     }
 }
-
 

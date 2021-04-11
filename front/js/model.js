@@ -1,10 +1,11 @@
 export default {
     getNewTransactionId: getNewTransactionId,
-    saveTransactionObj: saveTransactionObj,
     deleteTransactionObj: deleteTransactionObj,
-    thereIsDataStored: thereIsDataStored
+    thereIsDataStored: thereIsDataStored,
+    saveTransactionFormData: saveTransactionFormData
 }
 
+const endpointBase = "http://127.0.0.1:3050/api/v1/transactions"
 
 function getNewTransactionId() {
     let lastTransactionId = localStorage.getItem("lastTransactionId") || "-1"
@@ -12,20 +13,6 @@ function getNewTransactionId() {
     localStorage.setItem("lastTransactionId", JSON.stringify(newTransactionId))
     return newTransactionId
 }
-
-
-function saveTransactionObj(transactionObj) {
-    let transactionArray = []
-
-    if (thereIsDataStored()) {
-        transactionArray = JSON.parse(localStorage.getItem("transactionData"))
-    }
-
-    transactionArray.push(transactionObj)
-    const transactionArrayJson = JSON.stringify(transactionArray)
-    localStorage.setItem("transactionData", transactionArrayJson)
-}
-
 
 function deleteTransactionObj(transactionId) {
     let transactionArray = JSON.parse(localStorage.getItem("transactionData"))
@@ -41,6 +28,14 @@ function deleteTransactionObj(transactionId) {
 
 
 function thereIsDataStored() {
-    return localStorage.getItem("transactionData") != null
+    return localStorage.getItem("lastTransactionId") != null
 }
 
+
+function saveTransactionFormData(transactionFormData) {
+    const endpoint = endpointBase + "/save"
+    let req = new XMLHttpRequest()
+    req.open("POST", endpoint)
+    req.send(transactionFormData)
+
+}
