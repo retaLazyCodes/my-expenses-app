@@ -4,11 +4,15 @@ import modelFunctions from './model.js'
 let transactions = ""
 const endpointBase = "http://127.0.0.1:3050/api/v1/transactions"
 
+if (screen.width <= 400) {
+    hiddenBorderTable()
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     getInitial()
     viewFunctions.drawCategories()
     viewFunctions.drawSpanishDatepicker()
-    setTimeout(viewFunctions.drawTotalIncomeAndExpenses, 2000)
+    setTimeout(viewFunctions.drawTotalIncomeAndExpenses, 3000)
 })
 
 
@@ -23,7 +27,7 @@ form.addEventListener("submit", (event) => {
 
     const transactionObj = convertFormDataToTransactionObj(transactionFormData)
     viewFunctions.insertRowInTransactionTable(transactionObj)
-    setTimeout(viewFunctions.drawTotalIncomeAndExpenses, 2000)
+    setTimeout(viewFunctions.drawTotalIncomeAndExpenses, 3000)
     form.reset()
 
 })
@@ -54,5 +58,12 @@ function convertFormDataToTransactionObj(transactionFormData) {
         "transactionDate": transactionDate,
         "transactionId": transactionId
     }
+}
+
+
+function hiddenBorderTable() {
+    document.querySelector("#transactionTable").style.borderColor = "#0d0f12"
+
+
 }
 

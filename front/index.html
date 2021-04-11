@@ -18,9 +18,9 @@
     <div class="row">
         <div class="col l5 offset-l1 col s12">
             <div class="tableFormat">
-                <table id="transactionTable" class="striped bordered centered" data-transaction-id="123"
-                    data-column-amount="6">
-                    <caption>Historial de transacciones</caption>
+                <table id="transactionTable" class="striped bordered centered responsive-table"
+                    data-transaction-id="123" data-column-amount="6">
+                    <caption class="row s12">Historial de transacciones</caption>
                     <thead>
                         <tr>
                             <th>Tipo</th>
@@ -39,7 +39,8 @@
                     </tbody>
                 </table>
 
-                <table class="transactionTableResults striped bordered centered">
+                <table class="transactionTableResults striped bordered centered" class="transactionTableBody"
+                    class="col s12">
                     <thead>
                         <tr>
                             <th>Ingreso</th>
@@ -63,8 +64,8 @@
             <div class="col 8 s10 offset-s2">
                 <form action="#" id="transactionForm">
                     <div class="formClass">
-                        <p>
-                            <span>Tipo</span>
+                        <p class="row s12">
+                            <span class="col s12">Tipo</span>
                             <label>
                                 <i class="material-icons">call_received</i>
                                 <input class="with-gap" name="transactionType" type="radio" value="Ingreso" required />

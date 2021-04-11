@@ -103,7 +103,13 @@ td button {
 
 @media (min-width: 400px) {
     h1 {
-        font-size: 1.9rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 442px) {
+    h1 {
+        font-size: 2.0rem;
     }
 }
 
