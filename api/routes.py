@@ -22,13 +22,16 @@ def get_transactions():
 @cross_origin()
 def save_transactions():
     transaction_form = request.form
+    print(transaction_form)
     bd_dao.insert_transaction(transaction_form)
-    return "hello"
+    response = {'message': 'transaction saved success'}
+    return json.dumps(response)
 
 
-@app.route('/api/v1/transactions/delete', methods=['DELETE'])
+@app.route('/api/v1/transactions/delete/<id>', methods=['DELETE'])
 @cross_origin()
-def delete_transactions():
+def delete_transactions(id):
+    bd_dao.delete_transaction(id)
     response = {'message': 'transaction deleted success'}
     return jsonify(response)
 

@@ -5,9 +5,9 @@ import bd_connect
 
 def get_bd_connection():
     connection_bd = pymysql.connect(
-        user="expensesapp",
+        user="root",
         password=bd_connect.password,
-        host="den1.mysql2.gear.host",
+        host="localhost",
         database="expensesapp")
     return connection_bd
 
@@ -23,12 +23,13 @@ def execute_query(query, parameters):
 
 def create_table():
     sql_table_created = """ CREATE TABLE Transactions ( 
-                            id VARCHAR(6) UNSIGNED PRIMARY KEY,
-                            type VARCHAR(10),
-                            description VARCHAR(200),
-                            price VARCHAR(7),
-                            category VARCHAR(200),
-                            date VARCHAR(20) )
+                                id VARCHAR(6) UNSIGNED PRIMARY KEY,
+                                type VARCHAR(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                description VARCHAR(200),
+                                price VARCHAR(7),
+                                category VARCHAR(200),
+                                date VARCHAR(20) 
+                            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
                             """
     execute_query(sql_table_created)
 
@@ -75,3 +76,8 @@ def get_all_transactions():
     for row in rows:
         all_transactions_obj.append(db_transaction_to_transaction(row))
     return all_transactions_obj
+
+
+def delete_transaction(id):
+    delete_transaction_query = "DELETE FROM expensesapp.transactions WHERE id = %s"
+    execute_query(delete_transaction_query, id)
