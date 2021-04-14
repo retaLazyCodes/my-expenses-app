@@ -1,8 +1,11 @@
+import viewFunctions from './view.js'
+import drawFunctions from './draw.js'
+
 export default {
     getNewTransactionId: getNewTransactionId,
-    deleteTransactionObj: deleteTransactionObj,
+    deleteTransaction: deleteTransaction,
     thereIsDataStored: thereIsDataStored,
-    saveTransactionFormData: saveTransactionFormData
+    saveTransaction: saveTransaction
 }
 
 const endpointBase = "http://127.0.0.1:3050/api/v1/transactions"
@@ -14,28 +17,45 @@ function getNewTransactionId() {
     return newTransactionId
 }
 
-function deleteTransactionObj(transactionId) {
-    let transactionArray = JSON.parse(localStorage.getItem("transactionData"))
-    let transactionIndexInArray = transactionArray.findIndex(
-        element => element.transactionId == transactionId
-    )
-
-    transactionArray.splice(transactionIndexInArray, 1)
-
-    const transactionArrayJson = JSON.stringify(transactionArray)
-    localStorage.setItem("transactionData", transactionArrayJson)
-}
-
 
 function thereIsDataStored() {
     return localStorage.getItem("lastTransactionId") != null
 }
 
 
-function saveTransactionFormData(transactionFormData) {
-    const endpoint = endpointBase + "/save"
-    let req = new XMLHttpRequest()
-    req.open("POST", endpoint)
-    req.send(transactionFormData)
+function deleteTransaction(transactionId) {
+    fetch(endpointBase + "/delete/" + transactionId, {
+        method: "DELETE",
+    })
+        .then(drawFunctions.drawTotalIncomeAndExpenses())
+}
 
+
+function saveTransaction(transactionFormData) {
+    const transactionObj = convertFormDataToTransactionObj(transactionFormData)
+
+    fetch(endpointBase + "/save", {
+        method: "POST",
+        body: transactionFormData
+    })
+        .then(viewFunctions.insertRowInTransactionTable(transactionObj))
+        .then(drawFunctions.drawTotalIncomeAndExpenses())
+}
+
+
+function convertFormDataToTransactionObj(transactionFormData) {
+    const transactionType = transactionFormData.get('transactionType')
+    const transactionDescription = transactionFormData.get('transactionDescription')
+    const transactionAmount = transactionFormData.get('transactionAmount')
+    const transactionCategory = transactionFormData.get('transactionCategory')
+    const transactionDate = transactionFormData.get('transactionDate')
+    const transactionId = transactionFormData.get('transactionId')
+    return {
+        "transactionType": transactionType,
+        "transactionDescription": transactionDescription,
+        "transactionAmount": transactionAmount,
+        "transactionCategory": transactionCategory,
+        "transactionDate": transactionDate,
+        "transactionId": transactionId
+    }
 }
