@@ -5,9 +5,9 @@ import bd_connect
 
 def get_bd_connection():
     connection_bd = pymysql.connect(
-        user="root",
+        user="expensesapp",
         password=bd_connect.password,
-        host="localhost",
+        host="den1.mysql2.gear.host",
         database="expensesapp")
     return connection_bd
 
