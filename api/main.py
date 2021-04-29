@@ -1,5 +1,4 @@
 import json
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 import bd_dao
@@ -7,6 +6,11 @@ import bd_dao
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+
+@app.route('/')
+def index():
+    return "<h1>Welcome</h1>"
 
 
 @app.route('/api/v1/transactions/initial', methods=['GET'])
@@ -36,5 +40,6 @@ def delete_transactions(id):
     return jsonify(response)
 
 
-app.run(debug=True, port=3050)
+if __name__ == "__main__":
+    app.run(port=3050)
 
