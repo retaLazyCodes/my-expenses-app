@@ -86,8 +86,6 @@ h1 {
     transform: scale(1.2);
 }
 
-
-
 td button {
     background: #f05945;
 
@@ -97,8 +95,71 @@ td button {
     margin: 10px auto;
 }
 
-.tableFormat caption {
+.tableCaption {
     font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+.transactionResults {
+    font-family: 'Lora', serif;
+    font-size: 120%;
+}
+
+.modal-bg{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Commenting out this part until I can get JS to work */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.bg-active{
+    visibility: visible;
+    opacity: 1;
+}
+
+.edit-modal{
+    position: relative;
+    color:white;
+    background-color: #0d0f12;
+    width: 45%;
+    height: 65%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: unset;
+}
+
+.edit-modal button{
+    margin: 20px;
+    padding: 10px 30px;
+    background-color: #FEDCD2;
+    color:#4c5654;
+    border: solid 1px #DF744A;
+    font-size: 90%;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-modal-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
 }
 
 @media (min-width: 400px) {
