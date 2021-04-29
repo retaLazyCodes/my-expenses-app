@@ -1,170 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <title>Mi Economía</title>
-  </head>
 
-  <body>
-    <h1>Mi Aplicación para Gastos</h1>
-    <div class="row">
-      <div class="col l5 offset-l1 col s12">
-        <div class="tableFormat">
-          <table
-            id="transactionTable"
-            class="striped bordered centered responsive-table"
-            data-transaction-id="123"
-            data-column-amount="6"
-          >
-            <caption class="row s12">
-              Historial de transacciones
-            </caption>
-            <thead>
-              <tr>
-                <th>Tipo</th>
-                <th>Descripción</th>
-                <th>Monto</th>
-                <th>Categoría</th>
-                <th>Fecha</th>
-                <th>Eliminar</th>
-              </tr>
-            </thead>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <title>Mi Economía</title>
+</head>
 
-            <tbody class="transactionTableBody">
-              <tr></tr>
-            </tbody>
-          </table>
+<body>
+  <h1>Mi Aplicación para Gastos</h1>
+  <div class="row">
+    <div class="col l6 offset-l1 col s12">
+      <div class="tableFormat">
+        <table id="transactionTable" class="striped bordered centered responsive-table" data-transaction-id="123"
+          data-column-amount="6">
+          <span class="tableCaption">
+            Historial de transacciones
+          </span>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Descripción</th>
+              <th>Monto</th>
+              <th>Categoría</th>
+              <th>Fecha</th>
+              <th>Eliminar</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
 
-          <table
-            class="transactionTableResults striped bordered centered"
-            class="transactionTableBody"
-            class="col s12"
-          >
-            <thead>
-              <tr>
-                <th>Ingreso</th>
-                <th>Gasto</th>
-                <th>Saldo actual</th>
-              </tr>
-            </thead>
+          <tbody class="transactionTableBody">
+            <tr></tr>
+          </tbody>
+        </table>
 
-            <tbody class="transactionResults">
-              <tr>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+        <table class="transactionTableResults striped bordered centered col s12">
+          <thead>
+            <tr>
+              <th>Ingreso</th>
+              <th>Gasto</th>
+              <th>Saldo actual</th>
+            </tr>
+          </thead>
 
-      <div class="col l4 s10">
-        <div class="col 8 s10 offset-s2">
-          <form action="#" id="transactionForm">
-            <div class="formClass">
-              <p class="row s12">
-                <span class="col s12">Tipo</span>
-                <label>
-                  <i class="material-icons">call_received</i>
-                  <input
-                    class="with-gap"
-                    name="transactionType"
-                    type="radio"
-                    value="Ingreso"
-                    required
-                  />
-                  <span>Ingreso</span>
-                </label>
-                <label>
-                  <i class="material-icons">call_made</i>
-                  <input
-                    class="with-gap"
-                    name="transactionType"
-                    type="radio"
-                    value="Egreso"
-                    checked
-                  />
-                  <span>Egreso</span>
-                </label>
-              </p>
-            </div>
-            <div class="input-field">
-              <label for="transactionDescription">Descripcion: </label>
-              <input
-                class="validate"
-                type="text"
-                id="transactionDescription"
-                name="transactionDescription"
-                required
-              />
-            </div>
-            <div class="input-field">
-              <label for="transactionAmount">Monto: </label>
-              <input
-                class="validate"
-                type="number"
-                id="transactionAmount"
-                name="transactionAmount"
-                required
-              />
-            </div>
-            <div class="formClass">
-              <label for="transactionCategory">Categoria:</label>
-              <select
-                id="transactionCategory"
-                name="transactionCategory"
-                class="browser-default"
-                required
-              >
-                <option value="" disabled selected>
-                  Seleccione la categoría
-                </option>
-              </select>
-            </div>
-            <div class="formClass">
-              <input
-                id="transactionDate"
-                name="transactionDate"
-                class="datepicker"
-                type="text"
-              />
-              <label for="transactionDate">Elige la fecha</label>
-            </div>
-            <div class="formClass">
-              <button
-                class="waves-effect waves-light btn"
-                id="addButton"
-                name="action"
-              >
-                Añadir<i class="material-icons right">send</i>
-              </button>
-            </div>
-          </form>
-        </div>
+          <tbody class="transactionResults">
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <script src="js/scripts.js" type="module"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <script>
-      dayjs().format();
-    </script>
-  </body>
+
+    <div class="col l4 s10">
+      <div class="col 8 s10 offset-s2">
+        <form action="#" id="transactionForm">
+          <div class="formClass">
+            <p class="row s12">
+              <span class="col s12">Tipo</span>
+              <label>
+                <i class="material-icons">call_received</i>
+                <input class="with-gap" name="transactionType" type="radio" value="Ingreso" required />
+                <span>Ingreso</span>
+              </label>
+              <label>
+                <i class="material-icons">call_made</i>
+                <input class="with-gap" name="transactionType" type="radio" value="Egreso" checked />
+                <span>Egreso</span>
+              </label>
+            </p>
+          </div>
+          <div class="input-field">
+            <label for="transactionDescription">Descripcion: </label>
+            <input class="validate" type="text" id="transactionDescription" name="transactionDescription" required />
+          </div>
+          <div class="input-field">
+            <label for="transactionAmount">Monto: </label>
+            <input class="validate" type="number" id="transactionAmount" name="transactionAmount" required />
+          </div>
+          <div class="formClass">
+            <label for="transactionCategory">Categoria:</label>
+            <select id="transactionCategory" name="transactionCategory" class="browser-default" required>
+              <option value="" disabled selected>
+                Seleccione la categoría
+              </option>
+            </select>
+          </div>
+          <div class="formClass">
+            <input id="transactionDate" name="transactionDate" class="datepicker" type="text" />
+            <label for="transactionDate">Elige la fecha</label>
+          </div>
+          <div class="formClass">
+            <button class="waves-effect waves-light btn" id="addButton" name="action">
+              Añadir<i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-bg">
+    <div class="edit-modal">
+      <h3>Member Login</h3>
+      <div class="input-field">
+        <label for="transactionDescription">Descripcion: </label>
+        <input class="validate" type="text" id="new_transactionDescription" name="transactionDescription" required />
+      </div>
+      <div class="input-field">
+        <label for="transactionAmount">Monto: </label>
+        <input class="validate" type="number" id="new_transactionAmount" name="transactionAmount" required />
+      </div>
+      <div class="formClass">
+        <label for="transactionCategory">Categoria:</label>
+        <select id="new_transactionCategory" name="transactionCategory" class="browser-default" required>
+          <option value="" disabled selected>
+            Seleccione la categoría
+          </option>
+        </select>
+      </div>
+      <div class="formClass">
+        <input id="new_transactionDate" name="transactionDate" type="text">
+        <label for="transactionDate">Elige la fecha</label>
+      </div>
+
+
+      <button id="transactionUpdate">Actualizar</button>
+      <span class="edit-modal-close">X</span>
+    </div>
+  </div>
+
+
+  <script src="js/scripts.js" type="module"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script>
+    dayjs().format();
+  </script>
+</body>
+
 </html>

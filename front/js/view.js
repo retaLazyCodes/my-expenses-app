@@ -34,6 +34,7 @@ function insertRowInTransactionTable(transactionObj) {
             i++
         }
         insertDeleteButton(newTransactionRowRef, i)
+        insertEditButton(newTransactionRowRef, i + 1)
     }
 }
 
@@ -53,6 +54,7 @@ function insertCellInTransactionRow(newTransactionRowRef, transactionObj) {
         i++
     }
     insertDeleteButton(newTransactionRowRef, i)
+    insertEditButton(newTransactionRowRef, i + 1)
 }
 
 
@@ -74,6 +76,73 @@ function insertDeleteButton(newTransactionRowRef, deleteCellIndex) {
     })
 }
 
+function insertEditButton(newTransactionRowRef, deleteCellIndex) {
+    let newDeleteCell = newTransactionRowRef.insertCell(deleteCellIndex)
+    let editButton = document.createElement("button")
+    editButton.classList.add("modal-btn")
+    editButton.classList.add("waves-effect");
+    editButton.classList.add("waves-light");
+    editButton.classList.add("btn-small");
+    editButton.textContent = "Editar"
+    editButton.insertAdjacentHTML("beforeend", '<i class="material-icons left">edit</i>')
+    newDeleteCell.appendChild(editButton)
+
+    editButton.addEventListener('click', (event) => {
+        // Show Modal
+        const modalBg = document.querySelector(".modal-bg")
+        const modalClose = document.querySelector(".edit-modal-close")
+
+        modalBg.classList.add("bg-active")
+
+        modalClose.addEventListener("click", () => {
+            modalBg.classList.remove("bg-active")
+        })
+
+        // Loading current Date on modal
+        const table = document.getElementById("transactionTable")
+        const transactionRow = event.target.parentNode.parentNode
+        console.log("transactionRow: ", transactionRow)
+        const transactionId = parseInt(transactionRow.dataset["transactionId"])
+        console.log("transactionId: ", transactionId)
+        const currentTransactionDate = table.tBodies[0].rows[transactionId + 1].cells[4].textContent
+        console.log("currentDate", currentTransactionDate)
+
+        const modalDate = document.getElementById("new_transactionDate")
+        console.log(modalDate)
+        modalDate.value = currentTransactionDate
+
+
+        // Loading Desc on modal
+        const currentTransactionDesc = table.tBodies[0].rows[transactionId + 1].cells[1].textContent
+        const modalDesc = document.getElementById("new_transactionDescription")
+        console.log(modalDesc)
+        modalDesc.value = currentTransactionDesc
+        modalDesc.focus()
+
+
+        // Loading Price on modal
+        const currentTransactionAmount = table.tBodies[0].rows[transactionId + 1].cells[2].textContent
+        const modalAmount = document.getElementById("new_transactionAmount")
+        console.log(modalAmount)
+        modalAmount.value = currentTransactionAmount
+        modalAmount.focus()
+
+        // Loading all categories on the modal
+        const categories = document.getElementById("transactionCategory")
+        const modalCategories = document.getElementById("new_transactionCategory")
+        modalCategories.innerHTML = categories.innerHTML
+        modalCategories.value = table.tBodies[0].rows[transactionId + 1].cells[3].textContent
+
+
+        // Sendind data to API
+        const transactionUpdate = document.getElementById("transactionUpdate")
+
+        transactionUpdate.addEventListener("click", () => {
+
+            modelFunctions.updateTransaction(transactionId)
+        })
+    })
+}
 
 
 
