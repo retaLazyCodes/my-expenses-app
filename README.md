@@ -13,7 +13,7 @@ Just go to https://retalazycodes.github.io/my-expenses-app/
 
 
 **2. Localhost:**
-1. Install NodeJS
+1. Install Node.js
 2. Clone the repository
 3. Open a terminal and navigate to the *api* folder
 4. Now run `npm install` to install all dependencies

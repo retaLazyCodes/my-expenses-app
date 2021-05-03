@@ -12,8 +12,9 @@ exports.get_all_expenses = get_all_expenses
 async function get_all_transactions() {
     try {
         const query = `SELECT type, description, price, category, date, id 
-                        FROM expensesapp.transactions ORDER BY ABS(id) DESC LIMIT 5`
+                        FROM expensesapp.transactions `
         const rows = await pool.query(query)
+        console.log(rows)
         return JSON.parse(JSON.stringify(rows))
     } catch (error) {
         throw error
@@ -48,9 +49,12 @@ async function get_all_expenses() {
 function get_insert_transaction_query(transaction) {
 
     const date_str = transaction['transactionDate']
-    console.log(date_str)
-    const formatted_date = dayjs(date_str).format("YYYY-DD-MM")
-    console.log(formatted_date)
+    console.log("date_str", date_str)
+    const splittedDate = date_str.split("/")
+    let formatted_date = splittedDate[1] + "/" + splittedDate[0] + "/" + splittedDate[2]
+    console.log("formatted_date", formatted_date)
+    formatted_date = dayjs(formatted_date).format("YYYY-MM-DD")
+    console.log("formatted_dayjs_date", formatted_date)
 
     const parameters = [transaction['transactionId'],
     transaction['transactionType'],
