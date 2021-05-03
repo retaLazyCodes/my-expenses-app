@@ -2,7 +2,9 @@ import modelFunctions from './model.js'
 export default {
     renderNewSelection: renderNewSelection,
     insertRowInTransactionTable: insertRowInTransactionTable,
-    updateRowInTransactionTable: updateRowInTransactionTable
+    updateRowInTransactionTable: updateRowInTransactionTable,
+    showMessageThereNoTransactions: showMessageThereNoTransactions,
+    showTable: showTable
 }
 
 function renderNewSelection(transactions) {
@@ -70,6 +72,10 @@ function insertDeleteButton(newTransactionRowRef, deleteCellIndex) {
 
     deleteButton.addEventListener('click', (event) => {
         const transactionRow = event.target.parentNode.parentNode
+        const numberOfTransactions = event.target.parentNode.parentNode.parentNode.rows.length
+        if (numberOfTransactions == 2) {
+            showMessageThereNoTransactions()
+        }
         const transactionId = transactionRow.getAttribute("data-transaction-id")
         transactionRow.remove()
         modelFunctions.deleteTransaction(transactionId)
@@ -100,44 +106,44 @@ function insertEditButton(newTransactionRowRef, deleteCellIndex) {
         })
 
         // Loading current Date on modal
-        // const table = document.getElementById("transactionTable")
-        // const transactionRow = event.target.parentNode.parentNode
-        // console.log("transactionRow: ", transactionRow)
-        // const transactionId = parseInt(transactionRow.dataset["transactionId"])
-        // console.log("transactionId: ", transactionId)
-        // const currentTransactionDate = table.tBodies[0].rows[transactionId + 1].cells[4].textContent
-        // console.log("currentDate", currentTransactionDate)
+        const table = document.getElementById("transactionTable")
+        const transactionRow = event.target.parentNode.parentNode
+        console.log("transactionRow: ", transactionRow)
+        const transactionId = parseInt(transactionRow.dataset["transactionId"])
+        console.log("transactionId: ", transactionId)
+        const currentTransactionDate = table.tBodies[0].rows[transactionId + 1].cells[4].textContent
+        console.log("currentDate", currentTransactionDate)
 
-        // const modalDate = document.getElementById("new_transactionDate")
-        // console.log(modalDate)
-        // modalDate.value = currentTransactionDate
-
-
-        // const updateTransactionForm = document.getElementById("updateTransactionForm")
-        // updateTransactionForm.setAttribute("data-transaction-id", transactionId)
-        // console.log("updateTransactionForm", updateTransactionForm)
+        const modalDate = document.getElementById("new_transactionDate")
+        console.log(modalDate)
+        modalDate.value = currentTransactionDate
 
 
-        // // Loading Desc on modal
-        // const currentTransactionDesc = table.tBodies[0].rows[transactionId + 1].cells[1].textContent
-        // const modalDesc = document.getElementById("new_transactionDescription")
-        // console.log(modalDesc)
-        // modalDesc.value = currentTransactionDesc
-        // modalDesc.focus()
+        const updateTransactionForm = document.getElementById("updateTransactionForm")
+        updateTransactionForm.setAttribute("data-transaction-id", transactionId)
+        console.log("updateTransactionForm", updateTransactionForm)
 
 
-        // // Loading Price on modal
-        // const currentTransactionAmount = table.tBodies[0].rows[transactionId + 1].cells[2].textContent
-        // const modalAmount = document.getElementById("new_transactionAmount")
-        // console.log(modalAmount)
-        // modalAmount.value = currentTransactionAmount
-        // modalAmount.focus()
+        // Loading Desc on modal
+        const currentTransactionDesc = table.tBodies[0].rows[transactionId + 1].cells[1].textContent
+        const modalDesc = document.getElementById("new_transactionDescription")
+        console.log(modalDesc)
+        modalDesc.value = currentTransactionDesc
+        modalDesc.focus()
 
-        // // Loading all categories on the modal
-        // const categories = document.getElementById("transactionCategory")
-        // const modalCategories = document.getElementById("new_transactionCategory")
-        // modalCategories.innerHTML = categories.innerHTML
-        // modalCategories.value = table.tBodies[0].rows[transactionId + 1].cells[3].textContent
+
+        // Loading Price on modal
+        const currentTransactionAmount = table.tBodies[0].rows[transactionId + 1].cells[2].textContent
+        const modalAmount = document.getElementById("new_transactionAmount")
+        console.log(modalAmount)
+        modalAmount.value = currentTransactionAmount
+        modalAmount.focus()
+
+        // Loading all categories on the modal
+        const categories = document.getElementById("transactionCategory")
+        const modalCategories = document.getElementById("new_transactionCategory")
+        modalCategories.innerHTML = categories.innerHTML
+        modalCategories.value = table.tBodies[0].rows[transactionId + 1].cells[3].textContent
 
 
         // Sending data to API
@@ -176,6 +182,20 @@ function updateRowInTransactionTable(transactionObj) {
 }
 
 
+function showMessageThereNoTransactions() {
+    const table = document.getElementById("transactionTable")
+    table.style.visibility = "hidden"
+    const results = document.getElementById("thereNoTransactions")
+    results.classList.add("thereNoTransactions")
+    results.textContent = "No hay transacciones para mostrar"
+}
 
 
+function showTable() {
+    const table = document.getElementById("transactionTable")
+    table.style.removeProperty("visibility")
+    const results = document.getElementById("thereNoTransactions")
+    results.classList.remove("thereNoTransactions")
+    results.textContent = ""
+}
 

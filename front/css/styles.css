@@ -105,6 +105,14 @@ td button {
     text-align: center;
 }
 
+.thereNoTransactions {
+    margin-top: 10%;
+    font-size: 120%;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
 .transactionResults {
     font-family: 'Lora', serif;

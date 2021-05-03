@@ -1,6 +1,7 @@
 import modelFunctions from './model.js'
 export default {
-    drawTotalIncomeAndExpenses: drawTotalIncomeAndExpenses
+    drawTotalIncomeAndExpenses: drawTotalIncomeAndExpenses,
+    drawCategories: drawCategories
 }
 
 function drawTotalIncomeAndExpenses() {
@@ -50,4 +51,21 @@ function drawTotalIncomeAndExpenses() {
         transactionResults.rows[0].cells[2].textContent = 0
     }
 
+}
+
+function drawCategories() {
+    let allCategories = [
+        "Bebidas", "Comida", "Diversión", "Educación", "Expensas", "Gasolina", "Higiene", "Hotel", "Mascota", "Mercancía",
+        "Otros", "Personales", "Préstamo", "Propinas", "Ropa", "Salud", "Tecnología", "Trabajo", "Transporte",
+    ]
+    for (let index = 0; index < allCategories.length; index++) {
+        insertCategory(allCategories[index])
+    }
+}
+
+
+function insertCategory(categoryName) {
+    const selectElement = document.getElementById("new_transactionCategory")
+    const htmlToInsert = `<option> ${categoryName} </option>`
+    selectElement.insertAdjacentHTML("beforeend", htmlToInsert)
 }
