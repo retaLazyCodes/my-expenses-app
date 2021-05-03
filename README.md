@@ -3,6 +3,8 @@ A web application to control my expenses
 
 You can check my other branch *frontest* to see a full frontend version of the app
 
+*Originally the backend of this app was done in Flask, but later it was changed to Node.js*
+
 **# How To Run:**
 
 **1. Deployment:**
