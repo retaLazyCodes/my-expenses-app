@@ -1,5 +1,6 @@
-nota_fechas.txt
 api/.idea
+api/node_modules
 api/venv
 api/__pycache__
 .vscode
+front/.vscode
