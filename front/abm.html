@@ -48,16 +48,14 @@
     <li><a href="https://github.com/retaLazyCodes" target="_blank">Github</a></li>
   </ul>
 
-
-
   <h1>Mi Aplicación para Gastos</h1>
   <div class="row">
-    <div class="col l6  col s12">
+    <div class="col l6 offset-l1 col s12">
       <div class="tableFormat">
-        <table id="incomeTable" class="striped bordered centered responsive-table" data-transaction-id="123"
+        <table id="transactionTable" class="striped bordered centered responsive-table" data-transaction-id="123"
           data-column-amount="6">
           <span class="tableCaption">
-            Ingresos
+            Historial de transacciones
           </span>
           <thead>
             <tr>
@@ -71,58 +69,79 @@
             </tr>
           </thead>
 
-          <tbody class="incomeTableBody">
+          <tbody class="transactionTableBody">
             <tr></tr>
           </tbody>
         </table>
-      </div>
-    </div>
 
-    <div class="col l6  col s12">
-      <div class="tableFormat">
-        <table id="expensesTable" class="striped bordered centered responsive-table" data-transaction-id="123"
-          data-column-amount="6">
-          <span class="tableCaption">
-            Egresos
-          </span>
+        <table class="transactionTableResults striped bordered centered col s12">
           <thead>
             <tr>
-              <th>Tipo</th>
-              <th>Descripción</th>
-              <th>Monto</th>
-              <th>Categoría</th>
-              <th>Fecha</th>
-              <th>Eliminar</th>
-              <th>Editar</th>
+              <th>Ingreso</th>
+              <th>Gasto</th>
+              <th>Saldo actual</th>
             </tr>
           </thead>
 
-          <tbody class="expensesTableBody">
-            <tr></tr>
+          <tbody class="transactionResults">
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <table class="transactionTableResults striped bordered centered col l10 offset-l1 col s12">
-      <thead>
-        <tr>
-          <th>Ingreso</th>
-          <th>Gasto</th>
-          <th>Saldo actual</th>
-        </tr>
-      </thead>
-
-      <tbody class="transactionResults">
-        <tr>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <div class="col l4 s10">
+      <div class="col 8 s10 offset-s2">
+        <form action="#" id="transactionForm">
+          <div class="formClass">
+            <p class="row s12">
+              <span class="col s12">Tipo</span>
+              <label>
+                <i class="material-icons">call_received</i>
+                <input class="with-gap" name="transactionType" type="radio" value="Ingreso" required />
+                <span>Ingreso</span>
+              </label>
+              <label>
+                <i class="material-icons">call_made</i>
+                <input class="with-gap" name="transactionType" type="radio" value="Egreso" checked />
+                <span>Egreso</span>
+              </label>
+            </p>
+          </div>
+          <div class="input-field">
+            <label for="transactionDescription">Descripcion: </label>
+            <input class="validate" type="text" id="transactionDescription" name="transactionDescription" required />
+          </div>
+          <div class="input-field">
+            <label for="transactionAmount">Monto: </label>
+            <input class="validate" type="number" id="transactionAmount" name="transactionAmount" required />
+          </div>
+          <div class="formClass">
+            <label for="transactionCategory">Categoria:</label>
+            <select id="transactionCategory" name="transactionCategory" class="browser-default" required>
+              <option value="" disabled selected>
+                Seleccione la categoría
+              </option>
+            </select>
+          </div>
+          <div class="formClass">
+            <input id="transactionDate" name="transactionDate" class="datepicker" type="text" />
+            <label for="transactionDate">Elige la fecha</label>
+          </div>
+          <div class="formClass">
+            <button class="waves-effect waves-light btn" id="addButton" name="action">
+              Añadir<i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+
 
   <div class="modal-bg">
     <div class="edit-modal">
@@ -157,17 +176,11 @@
   </div>
 
 
-
-
-  <script src="js/home/scripts.js" type="module"></script>
+  <script src="js/abm/scripts.js" type="module"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <script>
     dayjs().format();
-    const sidenavs = document.querySelectorAll('.sidenav')
-    for (let i = 0; i < sidenavs.length; i++) {
-      M.Sidenav.init(sidenavs[i]);
-    }
   </script>
 </body>
 

@@ -36,13 +36,17 @@ h1 {
     color: white;
 }
 
-#transactionTable, .transactionTableResults {
+#transactionTable, .transactionTableResults, #incomeTable, #expensesTable {
     padding: 10px 10px;
     border: 10px;
     border-width: 2px;
     border-style: solid;
     border-color: rgba(179, 173, 173, 0.3);
   
+}
+
+#transactionTable tr:nth-child(n+12) {
+  display:none;
 }
 
 #transactionForm {
@@ -133,7 +137,7 @@ td button {
     position: relative;
     color:white;
     background-color: #0d0f12;
-    width: 45%;
+    width: 30%;
     height: 65%;
     display: flex;
     justify-content: space-around;
@@ -143,7 +147,7 @@ td button {
 }
 
 .edit-modal button{
-    margin: 20px;
+    margin-left: 25%;
     padding: 10px 30px;
     background-color: #FEDCD2;
     color:#4c5654;
@@ -192,6 +196,9 @@ td button {
     }
 }
 
+
+/* modifying components  */
+
 .datepicker-day-button, .select-dropdown, .dropdown-trigger {
     color: #0d0f12;
 }
@@ -216,4 +223,12 @@ table.striped > tbody > tr:nth-child(odd) {
 
 [type="radio"]:checked + span::after, [type="radio"].with-gap:checked + span::after {
     background-color: #EC008C;
+}
+
+nav .brand-logo i, nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi-"], nav .brand-logo i.material-icons {
+    font-size: 3.1rem;
+}
+
+nav ul a {
+    font-weight: bold;
 }
