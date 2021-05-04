@@ -45,7 +45,8 @@ function getExpensesTransactions() {
 }
 
 function hiddenBorderTable() {
-    document.querySelector("#ingressTable").style.borderColor = "#0d0f12"
+    document.querySelector("#incomeTable").style.borderColor = "#0d0f12"
+    document.querySelector("#expensesTable").style.borderColor = "#0d0f12"
 }
 
 document.addEventListener('DOMContentLoaded', function () {
