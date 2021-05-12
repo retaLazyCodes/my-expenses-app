@@ -143,7 +143,6 @@
     </div>
   </div>
 
-
   <div class="modal modal-bg">
     <div class="modal-content edit-modal">
       <form action="#" id="updateTransactionForm">
@@ -165,7 +164,7 @@
           </select>
         </div>
         <div class="formClass">
-          <input id="new_transactionDate" name="transactionDate" type="text">
+          <input id="new_transactionDate" name="transactionDate" type="text" required>
           <label for="transactionDate">Elige la fecha</label>
         </div>
         <button id="transactionUpdate" type="submit">Actualizar</button>
@@ -176,8 +175,9 @@
     </div>
   </div>
 
-
-  <script src="js/abm/scripts.js" type="module"></script>
+  <a onclick="M.toast({html: 'I am a toast'})" class="btn" id="error" style="display: none;"></a>
+  <a onclick="M.toast({html: 'I am a toast'})" class="btn" id="success" style="display: none;"></a>
+  <script src="./js/abm/scripts.js" type="module"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <script>

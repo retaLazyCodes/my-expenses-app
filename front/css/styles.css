@@ -294,3 +294,11 @@ nav .brand-logo i, nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi
 nav ul a {
     font-weight: bold;
 }
+
+#success {
+    background-color: #2BBBAD;
+}
+
+/* .toast, .toast-container {
+    background-color: #f05945;
+} */

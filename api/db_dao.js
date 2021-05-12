@@ -94,11 +94,12 @@ function delete_transaction(id) {
 
 
 function get_update_transaction_query(transaction) {
-
     const date_str = transaction['transactionDate']
-    console.log(date_str)
-    const formatted_date = dayjs(date_str).format("YYYY-DD-MM")
-    console.log(formatted_date)
+    console.log("date_str", date_str)
+    const splittedDate = date_str.split("/")
+    let formatted_date = splittedDate[1] + "/" + splittedDate[0] + "/" + splittedDate[2]
+    console.log("formatted_date", formatted_date)
+    formatted_date = dayjs(formatted_date).format("YYYY-MM-DD")
 
     const parameters = [
         transaction['transactionDescription'],

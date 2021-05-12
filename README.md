@@ -7,15 +7,9 @@ You can check my other branch *frontest* to see a full frontend version of the a
 
 **# How To Run:**
 
-**1. Deployment:**
-
-Just go to https://retalazycodes.github.io/my-expenses-app/
-
-
-**2. Localhost:**
 1. Install Node.js
 2. Clone the repository
 3. Open a terminal and navigate to the *api* folder
-4. Now run `npm install` to install all dependencies
-5. Now run the server with the command `node app.js`
-6. Finally go to *front* folder and open the `index.html` file using a local server (eg Live Server of VS Code)
+4. Now run `npm install` to install all dependencies of the backend
+5. Now type `cd ..` and run `npm install` again to install the dependencies of the front
+6. Finally run `npm start` to run the app

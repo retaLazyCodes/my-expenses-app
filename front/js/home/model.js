@@ -32,7 +32,7 @@ function deleteLastTransactionId() {
 
 function deleteTransaction(transactionId) {
     fetch(endpointBase + "/delete/" + transactionId, {
-        method: "POST",
+        method: "DELETE",
     })
         .then(drawFunctions.drawTotalIncomeAndExpenses())
         .then(deleteLastTransactionId())
@@ -44,7 +44,7 @@ function updateTransaction(transactionFormData) {
     console.log("AAAA", transactionFormData)
     console.log("AAAA", transactionObj)
     fetch(endpointBase + "/update", {
-        method: "POST",
+        method: "PUT",
         body: transactionFormData
     })
         .then(viewFunctions.updateRowInTransactionTable(transactionObj))

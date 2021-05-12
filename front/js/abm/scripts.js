@@ -8,6 +8,8 @@ if (screen.width <= 400) {
     hiddenBorderTable()
 }
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     getTransactions()
     drawFunctions.drawCategories()
@@ -81,4 +83,3 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
-

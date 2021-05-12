@@ -16,9 +16,10 @@ app.get('/api/v1/transactions/initial', async function (req, res) {
     try {
         const all_transactions = await db_dao.get_all_transactions()
         console.log("rows", all_transactions)
-        res.send(JSON.stringify(all_transactions))
+        res.status(200).send(JSON.stringify(all_transactions))
     } catch (error) {
-        throw error
+        console.log(error.message)
+        res.status(400).send({ "Error": e.message })
     }
 })
 
@@ -27,9 +28,10 @@ app.get('/api/v1/transactions/income', async function (req, res) {
     try {
         const all_transactions = await db_dao.get_all_income()
         console.log("income", all_transactions)
-        res.send(JSON.stringify(all_transactions))
+        res.status(200).send(JSON.stringify(all_transactions))
     } catch (error) {
-        throw error
+        console.log(error.message)
+        res.status(400).send({ "Error": e.message })
     }
 })
 
@@ -38,9 +40,10 @@ app.get('/api/v1/transactions/expenses', async function (req, res) {
     try {
         const all_transactions = await db_dao.get_all_expenses()
         console.log("expenses", all_transactions)
-        res.send(JSON.stringify(all_transactions))
+        res.status(200).send(JSON.stringify(all_transactions))
     } catch (error) {
-        throw error
+        console.log(error.message)
+        res.status(400).send({ "Error": e.message })
     }
 })
 
@@ -50,34 +53,42 @@ app.use(express.static('public'));
 
 app.post('/api/v1/transactions/save', function (req, res) {
     try {
+        const values = Object.values(req.body)
+        const result = values.filter(val => val === "")
+        if (result.length > 0 || values.length != 6) {
+            throw new Error("Bad request error")
+        }
         db_dao.insert_transaction(req.body)
         const response = { 'message': 'transaction saved success' }
-        res.send(response)
+        res.status(200).json(response)
     } catch (error) {
-        throw error
+        console.log(error.message)
+        res.status(400).json(error)
     }
 })
 
 
-app.post('/api/v1/transactions/update', function (req, res) {
+app.put('/api/v1/transactions/update', function (req, res) {
     try {
         db_dao.update_transaction(req.body)
         const response = { 'message': 'transaction updated success' }
-        res.send(response)
+        res.status(200).json(response)
     } catch (error) {
-        throw error
+        console.log(error.message)
+        res.status(400).json(error)
     }
 })
 
 
-app.post('/api/v1/transactions/delete/:id', function (req, res) {
+app.delete('/api/v1/transactions/delete/:id', function (req, res) {
     try {
         console.log(req.params.id)
         db_dao.delete_transaction(req.params.id)
         const response = { 'message': 'transaction deleted success' }
-        res.send(response)
+        res.status(200).json(response)
     } catch (error) {
-        throw error
+        console.log(error.message)
+        res.status(400).json(error)
     }
 })
 
