@@ -14,5 +14,3 @@ You can check my other branch *frontest* to see a full frontend version of the a
 5. Now type `cd ..` and run `npm install` again to install the dependencies of the front
 6. Finally run `npm start` to run the app
 
-Check the app here  ➡ ➡ ➡
-https://retalazycodes.github.io/my-expenses-app/front/
