@@ -8,7 +8,7 @@ export default {
     updateTransaction: updateTransaction
 }
 
-const endpointBase = "https://reta-expenses-node-app.herokuapp.com/api/v1/transactions"
+const endpointBase = "http://localhost:8081/api/v1/transactions"
 
 function getNewTransactionId() {
     let lastTransactionId = localStorage.getItem("lastTransactionId") || "-1"
