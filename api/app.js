@@ -1,3 +1,4 @@
+require('dotenv').config();
 const db_dao = require('./db_dao')
 const cors = require('cors')
 const express = require('express')

@@ -6,7 +6,7 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'den1.mysql2.gear.host',
     user: 'expensesapp',
-    password: bd_connect.password,
+    password: process.env.DB_PASSWORD,
     database: 'expensesapp'
 })
 
