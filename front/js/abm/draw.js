@@ -5,37 +5,17 @@ export default {
     drawTotalIncomeAndExpenses: drawTotalIncomeAndExpenses
 }
 
-function drawTotalIncomeAndExpenses() {
+const endpointBase = "https://reta-expense-app.herokuapp.com/api/v1/transactions"
+
+async function drawTotalIncomeAndExpenses() {
     if (modelFunctions.thereIsDataStored()) {
-        const table = document.getElementById('transactionTable')
-        const tbodyRowCount = table.tBodies[0].rows.length;
-        const tbody = document.querySelector(".transactionTableBody")
+        const res = await fetch(`${endpointBase}/total-expense`)
+        const json = await res.json()
+        const { ingreso, egreso } = json
+        const incomeTotalAmount = ingreso[0].TotalIngreso
+        const expensesTotalAmount = egreso[0].TotalEgreso
 
-        let incomeTransactionAmountRows = []
-        let expensesTransactionAmountRows = []
-        for (let j = 1; j < tbodyRowCount; j++) {
-            const actualTransactionAmountRow = tbody.rows[j].cells[2].textContent
-            const actualTransactionCategoryRow = tbody.rows[j].cells[0].textContent
-
-            if (actualTransactionCategoryRow == "Ingreso") {
-                incomeTransactionAmountRows.push(actualTransactionAmountRow)
-            }
-            else {
-                expensesTransactionAmountRows.push(actualTransactionAmountRow)
-            }
-        }
-
-        let incomeTotalAmount = 0
-        let expensesTotalAmount = 0
-        incomeTransactionAmountRows.forEach(elem => {
-            incomeTotalAmount += parseFloat(elem)
-        })
-
-        expensesTransactionAmountRows.forEach(elem => {
-            expensesTotalAmount += parseFloat(elem)
-        })
-
-        let currentBalance = incomeTotalAmount - expensesTotalAmount
+        const currentBalance = incomeTotalAmount - expensesTotalAmount
 
         let transactionResults = document.querySelector(".transactionResults")
         transactionResults.rows[0].cells[0].textContent = incomeTotalAmount

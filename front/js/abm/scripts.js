@@ -2,7 +2,7 @@ import viewFunctions from './view.js'
 import drawFunctions from './draw.js'
 import modelFunctions from './model.js'
 
-const endpointBase = "http://localhost:8081/api/v1/transactions"
+const endpointBase = "https://reta-expense-app.herokuapp.com/api/v1/transactions"
 
 if (screen.width <= 400) {
     hiddenBorderTable()
@@ -49,10 +49,10 @@ updateForm.addEventListener("submit", (event) => {
 function getTransactions() {
     fetch(endpointBase + "/initial")
         .then(response => response.json())
-        .then(json => {
+        .then(async (json) => {
             if (json.length > 0) {
                 viewFunctions.renderNewSelection(json)
-                drawFunctions.drawTotalIncomeAndExpenses()
+                await drawFunctions.drawTotalIncomeAndExpenses()
             }
             else {
                 viewFunctions.showMessageThereNoTransactions()

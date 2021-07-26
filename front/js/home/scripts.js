@@ -1,7 +1,7 @@
 import viewFunctions from './view.js'
 import drawFunctions from './draw.js'
 
-const endpointBase = "http://localhost:8081/api/v1/transactions"
+const endpointBase = "https://reta-expense-app.herokuapp.com/api/v1/transactions"
 
 if (screen.width <= 400) {
     hiddenBorderTable()
@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function getIncomeTransactions() {
     fetch(endpointBase + "/income")
         .then(response => response.json())
-        .then(json => {
+        .then(async (json) => {
             console.log("income", json)
             if (json.length > 0) {
                 viewFunctions.renderNewIncome(json)
-                drawFunctions.drawTotalIncomeAndExpenses()
+                await drawFunctions.drawTotalIncomeAndExpenses()
             }
             else {
                 viewFunctions.showMessageThereNoIncomeTransactions()

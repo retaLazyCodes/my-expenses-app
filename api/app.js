@@ -48,6 +48,16 @@ app.get('/api/v1/transactions/expenses', async function (req, res) {
     }
 })
 
+app.get('/api/v1/transactions/total-expense', async function (req, res) {
+    try {
+        const all_transactions = await db_dao.get_total_expenses()
+        console.log("expenses", all_transactions)
+        res.status(200).send(JSON.stringify(all_transactions))
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).send({ "Error": e.message })
+    }
+})
 
 app.use(upload.array());
 app.use(express.static('public'));

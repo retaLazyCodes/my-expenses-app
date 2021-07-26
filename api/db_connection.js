@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-const bd_connect = require('./db_pass');
 const util = require('util')
 
 const pool = mysql.createPool({

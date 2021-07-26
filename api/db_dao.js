@@ -6,6 +6,7 @@ exports.update_transaction = update_transaction
 exports.delete_transaction = delete_transaction
 exports.get_all_income = get_all_income
 exports.get_all_expenses = get_all_expenses
+exports.get_total_expenses = get_total_expenses
 
 
 
@@ -40,6 +41,23 @@ async function get_all_expenses() {
                         FROM transactions WHERE type = 'Egreso' ORDER BY ABS(id) DESC`
         const rows = await pool.query(query)
         return JSON.parse(JSON.stringify(rows))
+    } catch (error) {
+        throw error
+    }
+}
+
+async function get_total_expenses() {
+    try {
+        const query1 = `SELECT type, price, SUM(price) AS TotalIngreso 
+        FROM transactions WHERE type = 'Ingreso';`
+        const rows1 = await pool.query(query1)
+
+        const query2 = `SELECT type, price, SUM(price) AS TotalEgreso 
+        FROM transactions WHERE type = 'Egreso';`
+        const rows2 = await pool.query(query2)
+
+        const obj = { ingreso: rows1, egreso: rows2 }
+        return JSON.parse(JSON.stringify(obj))
     } catch (error) {
         throw error
     }
