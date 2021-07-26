@@ -13,3 +13,4 @@ You can check my other branch *frontest* to see a full frontend version of the a
 4. Now run `npm install` to install all dependencies of the backend
 5. Now type `cd ..` and run `npm install` again to install the dependencies of the front
 6. Finally run `npm start` to run the app
+
