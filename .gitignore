@@ -5,5 +5,5 @@ api/__pycache__
 *.env
 .vscode
 front/.vscode
-node_modules
+/node_modules
 dist
